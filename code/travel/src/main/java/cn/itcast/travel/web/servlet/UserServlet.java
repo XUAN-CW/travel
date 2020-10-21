@@ -1,8 +1,13 @@
 package cn.itcast.travel.web.servlet;
 
+import cn.itcast.travel.dao.FavoriteDao;
+import cn.itcast.travel.domain.Favorite;
+import cn.itcast.travel.domain.PageBean;
 import cn.itcast.travel.domain.ResultInfo;
 import cn.itcast.travel.domain.User;
+import cn.itcast.travel.service.FavoriteService;
 import cn.itcast.travel.service.UserService;
+import cn.itcast.travel.service.impl.FavoriteServiceImpl;
 import cn.itcast.travel.service.impl.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.beanutils.BeanUtils;
@@ -21,6 +26,7 @@ public class UserServlet extends BaseServlet {
 
     //声明UserService业务对象
     private UserService service = new UserServiceImpl();
+    private FavoriteService favoriteService = new FavoriteServiceImpl();
 
     /**
      * 注册功能
@@ -203,5 +209,29 @@ public class UserServlet extends BaseServlet {
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().write(msg);
         }
+    }
+
+    public void myFavorite(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+        User user = (User)request.getSession().getAttribute("user");
+        if (user == null || "".equals(user)){
+            System.out.println("用户未登录，收藏路线请求错误");
+            return;
+        }
+        String currentPage_str = request.getParameter("currentPage");
+        String pageSize_str = request.getParameter("pageSize");
+        if (currentPage_str == null || currentPage_str.length() ==0){
+            currentPage_str = "1";
+        }
+        int currentPage = Integer.parseInt(currentPage_str);
+        int pageSize = 0;
+        if (pageSize_str!=null && pageSize_str.length()>0){
+            pageSize = Integer.parseInt(pageSize_str);
+        }else{
+            pageSize = 5;
+        }
+
+        PageBean<Favorite> pageBean = favoriteService.myFavorite(user, currentPage, pageSize);
+
+        writeValue(pageBean,response);
     }
 }

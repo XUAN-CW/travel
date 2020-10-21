@@ -1,6 +1,10 @@
 package cn.itcast.travel.dao;
 
 import cn.itcast.travel.domain.Favorite;
+import cn.itcast.travel.domain.TabFavorite;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
+import java.util.List;
 
 public interface FavoriteDao {
 
@@ -25,4 +29,9 @@ public interface FavoriteDao {
      * @param uid
      */
     void add(int i, int uid);
+
+    public int findTotalCountByUid(int uid);
+    //分页查询出用户收藏TabFavorite信息
+    public List<TabFavorite> findByUid(int uid, int start, int pageSize);
+    public int findByRid(int rid);
 }

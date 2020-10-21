@@ -1,6 +1,7 @@
 package cn.itcast.travel.dao;
 
 import cn.itcast.travel.domain.Route;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface RouteDao {
      * @return
      */
     public Route findOne(int rid);
+    //根据rid查询出具体的路线信息
+    public Route findRouteByRid(int rid);
 }
