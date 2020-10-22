@@ -227,7 +227,7 @@ public class UserServlet extends BaseServlet {
         if (pageSize_str!=null && pageSize_str.length()>0){
             pageSize = Integer.parseInt(pageSize_str);
         }else{
-            pageSize = 5;
+            pageSize = 20;
         }
 
         PageBean<Favorite> pageBean = favoriteService.myFavorite(user, currentPage, pageSize);
