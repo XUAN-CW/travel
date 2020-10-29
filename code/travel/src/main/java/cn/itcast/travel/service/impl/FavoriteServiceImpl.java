@@ -32,6 +32,11 @@ public class FavoriteServiceImpl implements FavoriteService {
         favoriteDao.add(Integer.parseInt(rid),uid);
     }
 
+    @Override
+    public void cancel(String rid, int uid) {
+        favoriteDao.cancel(Integer.parseInt(rid),uid);
+    }
+
 
     public PageBean<Favorite> myFavorite(User user, int currentPage,int pageSize) {
         List<Favorite> myFavorite = new ArrayList<>();

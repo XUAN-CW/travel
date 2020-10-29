@@ -270,10 +270,8 @@
                 //<a  class="btn already" disabled="disabled">
                 //设置收藏按钮的样式
                 $("#favorite").addClass("already");
-                $("#favorite").attr("disabled","disabled");
+                $("#favorite").attr("onclick","cancelFavorite();");
 
-                //删除按钮的点击事件
-                $("#favorite").removeAttr("onclick");
             }else{
                 // 用户没有收藏
             }
@@ -302,6 +300,28 @@
                alert("您尚未登录，请登录");
                location.href="http://localhost/travel/login.html";
            }
+        })
+    }
+
+    //点击收藏按钮触发的方法
+    function cancelFavorite(){
+        var rid = getParameter("rid");
+        //1. 判断用户是否登录
+        $.get("user/findOne",{},function (user) {
+            if(user){
+                //用户登录了
+                //添加功能
+                $.get("route/cancelFavorite",{rid:rid},function () {
+
+                    //代码刷新页面
+                    location.reload();
+                });
+
+            }else{
+                //用户没有登录
+                alert("您尚未登录，请登录");
+                location.href="http://localhost/travel/login.html";
+            }
         })
     }
 

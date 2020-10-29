@@ -143,5 +143,23 @@ public class RouteServlet extends BaseServlet {
 
     }
 
+    public void cancelFavorite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //1. 获取线路rid
+        String rid = request.getParameter("rid");
+        //2. 获取当前登录的用户
+        User user = (User) request.getSession().getAttribute("user");
+        int uid;//用户id
+        if(user == null){
+            //用户尚未登录
+            return ;
+        }else{
+            //用户已经登录
+            uid = user.getUid();
+        }
+
+
+        //3. 调用service添加
+        favoriteService.cancel(rid,uid);
 
     }
+}

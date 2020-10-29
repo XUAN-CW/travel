@@ -30,6 +30,8 @@ public interface FavoriteDao {
      */
     void add(int i, int uid);
 
+    void cancel(int rid, int uid);
+
     public int findTotalCountByUid(int uid);
     //分页查询出用户收藏TabFavorite信息
     public List<TabFavorite> findByUid(int uid, int start, int pageSize);

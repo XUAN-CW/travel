@@ -41,6 +41,10 @@ public class FavoriteDaoImpl implements FavoriteDao {
         template.update(sql,rid,new Date(),uid);
     }
 
+    @Override
+    public void cancel(int rid, int uid){
+        String sql = "DELETE FROM tab_favorite WHERE rid="+rid+" and uid="+uid;
+
     public int findTotalCountByUid(int uid) {
         String sql = "select count(*) from tab_favorite where uid = ?";
         return template.queryForObject(sql,Integer.class,uid);

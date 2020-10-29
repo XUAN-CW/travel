@@ -26,5 +26,7 @@ public interface FavoriteService {
      */
     void add(String rid, int uid);
 
+    void cancel(String rid, int uid);
+
     public PageBean<Favorite> myFavorite(User user, int currentPage,int pageSize);
 }
