@@ -44,6 +44,9 @@ public class FavoriteDaoImpl implements FavoriteDao {
     @Override
     public void cancel(int rid, int uid){
         String sql = "DELETE FROM tab_favorite WHERE rid="+rid+" and uid="+uid;
+        template.execute(sql);
+    }
+
 
     public int findTotalCountByUid(int uid) {
         String sql = "select count(*) from tab_favorite where uid = ?";
