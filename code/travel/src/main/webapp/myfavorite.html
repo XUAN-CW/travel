@@ -29,6 +29,15 @@
                     $("#totalPage").html(pb.totalPage);
                     $("#totalCount").html(pb.totalCount);
 
+                    var all=0;
+                    for (var i = 0; i < pb.totalCount; i++) {
+                        //获取{rid:1,rname:"xxx"}
+                        var route = pb.list[i].route;
+
+                        all+=route.price;
+                    }
+                    console.log(all);
+                $("#all").html(all);
 
                     var lis = "";
 
@@ -289,7 +298,7 @@
                 </ul>
                 <div class="page_num_inf">
                     <i></i> 共
-                    <span id="totalPage">12</span>页<span id="totalCount">132</span>条
+                    <span id="totalPage">12</span>页<span id="totalCount">132</span>条 合计<span id="all">0</span>元
                 </div>
                 <div class="pageNum">
                     <ul id="pageNum">
