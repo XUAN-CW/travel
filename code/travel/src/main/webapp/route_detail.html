@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/route-detail.css">
-
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
 
 </head>
@@ -262,20 +262,69 @@
 
 
     $(function () {
-       // 发送请求，判断用户是否收藏过该线路
-        var rid = getParameter("rid");
-        $.get("route/isFavorite",{rid:rid},function (flag) {
-            if(flag){
-                // 用户已经收藏过
-                //<a  class="btn already" disabled="disabled">
-                //设置收藏按钮的样式
-                $("#favorite").addClass("already");
-                $("#favorite").attr("onclick","cancelFavorite();");
 
-            }else{
-                // 用户没有收藏
+        var rid = getParameter("rid");
+        // var uid = getParameter("1").;
+        var uid = 1;
+
+        $.ajax({
+            // url:"http://localhost:8081/getRidAndUid?rid=1&uid=23",
+            type:'GET',
+            dataType:'JSONP',  // 处理Ajax跨域问题
+            success: function(data){
+                $('body').append( "Name: " + data );
+                // console.log("aaa");
             }
         });
+
+        $(function (attr) {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+                // IE6, IE5 浏览器执行代码
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    if("false"==xmlhttp.responseText){
+
+                        console.log("不在");
+                    }else {
+                        console.log("在");
+                        document.getElementById("favorite").innerHTML="已在购物车";
+                        document.getElementById("favorite").setAttribute("onclick","cancelFavorite();");
+
+                    }
+
+                }
+            }
+            xmlhttp.open("GET","http://localhost:8081/getRidAndUid?rid="+rid+"&uid=3",true);
+            xmlhttp.send();
+        })
+
+
+
+       // // 发送请求，判断用户是否收藏过该线路
+       //  var rid = getParameter("rid");
+       //  $.get("route/isFavorite",{rid:rid},function (flag) {
+       //      if(flag){
+       //          // 用户已经收藏过
+       //          //<a  class="btn already" disabled="disabled">
+       //          //设置收藏按钮的样式
+       //          $("#favorite").addClass("already");
+       //          $("#favorite").attr("onclick","cancelFavorite();");
+       //
+       //      }else{
+       //          // 用户没有收藏
+       //      }
+       //  });
 
 
 
