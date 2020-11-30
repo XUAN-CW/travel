@@ -73,11 +73,20 @@ h1, h2, h3, h4, h5, h6 {
 #header {
     width: 100%;
     overflow: hidden;
+    margin:0;
+    padding:0;
+}
+
+#headerimg {
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .top_banner {
-    width: 1500px;
-    height: 128px;
+    margin:0;
+    padding:0;
     margin: 0 auto;
 }
 
