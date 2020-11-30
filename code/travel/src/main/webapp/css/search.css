@@ -34,7 +34,7 @@ a {
   font-size: 16px;
 }
 .page_one .xinxi .left {
-  width: 890px;
+  width: 1090px;
   float: left;
 }
 .page_one .xinxi .left .header {
@@ -42,7 +42,7 @@ a {
   font-weight: bold;
   height: 40px;
   line-height: 40px;
-  padding-left: 300px;
+  padding-left: 500px;
   margin-bottom: 15px;
 }
 .page_one .xinxi .left .header .jg {
@@ -62,7 +62,7 @@ a {
   float: left;
 }
 .page_one .xinxi .left > ul li .text1 {
-  width: 330px; 
+  width: 530px;
   float: left;
   padding: 20px;
   color: #a3a3a3;
